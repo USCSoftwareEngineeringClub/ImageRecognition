@@ -1,8 +1,9 @@
+package net.sourceforge.tess4j.example;
 //File io
 import java.io.File;
 import java.io.FileNotFoundException;
 //Imagework
-import java.awt.image;
+import net.sourceforge.tess4j.*;
 
 public class Main
 {
@@ -27,8 +28,18 @@ public class Main
 				files[i] = new File(temp);
 		}
 
+		// ITesseract instance = new Tesseract();
+		ITesseract instance = new Tesseract1();
 		for(File file : files)
-			System.out.println(file.getPath());
+		{
+			// System.out.println(file.getPath());
+			try{
+			String result = instance.doOCR(file);
+			System.out.println(result);
+		}catch(Exception e) {
+			e.printStackTrace();
+			}
+		}
 	}
 	public static void printArray(String[] arr)
 	{
